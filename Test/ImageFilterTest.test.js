@@ -1,4 +1,4 @@
-import { imageFilter } from '../ImageFilter';
+import { imageFilter } from '../src/ImageFilter';
   
 test('Test file extensions png', () => {
   const mockFunc = (exception, result) => { return result};
