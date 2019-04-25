@@ -1,17 +1,17 @@
-const express = require('express')
+import express from 'express';
 import { singleImageUpload } from './ImageUploader';
 
-var url = require('url');
+const url = require('url');
 
-function hostUrl(req) {
+const hostUrl = (req) => {
   return url.format({
     protocol: req.protocol,
     host: req.get('host')
   });
-}
+};
 
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
 
 app.post('/imageUploader', function (req, res) {
   singleImageUpload(req, res, function(err) {
