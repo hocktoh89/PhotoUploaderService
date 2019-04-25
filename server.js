@@ -11,21 +11,18 @@ const storage = multer.diskStorage({
   }
 })
 
-var upload = multer({ storage: storage, fileFilter: imageFilter });
+const upload = multer({ storage: storage, fileFilter: imageFilter }).single('image');
 
 const app = express()
 const port = 3000
 
-app.post('/imageUploader', upload.single('image'), function (err, req, res, next) {
-
-  if(err)
-  {
-    res.status(500).send(err.message);
-  } else {
-    res.status(200).send('I will give you a permanennt link to do upload');
-  }
-
-  // res.status(200).send('I will give you a permanennt link to do upload');
+app.post('/imageUploader', function (req, res) {
+    upload(req,res,function(err) {
+      if(err) {
+          return res.end(err.message);
+      }
+      res.end("File is uploaded");
+  });
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
