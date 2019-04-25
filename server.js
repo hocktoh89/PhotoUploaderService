@@ -1,5 +1,6 @@
 const express = require('express')
 import { singleImageUpload } from './ImageUploader';
+
 var url = require('url');
 
 function hostUrl(req) {
